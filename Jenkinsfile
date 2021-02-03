@@ -29,7 +29,6 @@ pipeline {
             post{
                 always{
                     junit 'build/test-results/integrationTest/TEST-*.xml'
-                    jacoco(execPattern: 'build/jacoco/test.exec')
                 }
             }
         }
