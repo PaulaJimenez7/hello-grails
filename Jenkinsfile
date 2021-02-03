@@ -23,7 +23,7 @@ pipeline {
         stage('test-iT') {
             steps {
                 withGradle{
-                    sh './gradlew -Dgeb.env=firefox iT'
+                    sh './gradlew clean -Dgeb.env=firefox iT'
                 }              
             }
             post{
