@@ -49,18 +49,6 @@ pipeline {
                     sh './gradlew codenarcTest'
                 }              
             }
-            post{
-                always{
-                    echo 'Publish Codenarc Report'
-                    publishHTML (target : [allowMissing: false,
-                        alwaysLinkToLastBuild: true,
-                        keepAll: true,
-                        reportDir: 'build/reports/codenarc',
-                        reportFiles: '*.html',
-                        reportName: 'Codenarc Report',
-                        reportTitles: 'The Report']) 
-                }
-            }
         }
     }
 }
