@@ -16,7 +16,6 @@ pipeline {
             post{
                 always{
                     junit 'build/test-results/test/TEST-*.xml'
-                    jacoco(execPattern: 'build/jacoco/test.exec')
                 }
             }
         }
@@ -29,6 +28,36 @@ pipeline {
             post{
                 always{
                     junit 'build/test-results/integrationTest/TEST-*.xml'
+                }
+            }
+        }
+        stage('test-iT') {
+            steps {
+                withGradle{
+                    sh './gradlew clean -Dgeb.env=firefoxHeadless iT'
+                }              
+            }
+            post{
+                always{
+                    junit 'build/test-results/integrationTest/TEST-*.xml'
+                }
+            }
+        }
+        stage('codenarc') {
+            steps {
+                withGradle{
+                    sh './gradlew codenarcTest'
+                }              
+            }
+            post{
+                always{
+                   publishHTML (target : [allowMissing: false,
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true,
+                        reportDir: 'build/reports/codenarc',
+                        reportFiles: '*.html',
+                        reportName: 'Codenarc Report',
+                        reportTitles: 'The Report']) 
                 }
             }
         }
