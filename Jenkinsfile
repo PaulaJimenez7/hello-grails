@@ -22,7 +22,7 @@ pipeline {
         stage('test-iT') {
             steps {
                 withGradle{
-                    sh './gradlew clean -Dgeb.env=firefoxHeadless iT'
+                    sh './gradlew -Dgeb.env=firefoxHeadless iT'
                 }              
             }
             post{
@@ -51,6 +51,7 @@ pipeline {
             }
             post{
                 always{
+                    echo 'Publish Codenarc Report'
                    publishHTML (target : [allowMissing: false,
                         alwaysLinkToLastBuild: true,
                         keepAll: true,
