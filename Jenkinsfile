@@ -52,7 +52,7 @@ pipeline {
             post{
                 always{
                     echo 'Publish Codenarc Report'
-                   publishHTML (target : [allowMissing: false,
+                    publishHTML (target : [allowMissing: false,
                         alwaysLinkToLastBuild: true,
                         keepAll: true,
                         reportDir: 'build/reports/codenarc',
