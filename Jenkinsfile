@@ -21,7 +21,7 @@ pipeline {
         }
         stage('test-iT') {
             steps { 
-                configFileProvider([configFile('hello-grails-gradle.properties')]) {
+                configFileProvider([configFile('hello-grails-gradle.properties', variable: 'systemProp.geb.env'))]) {
                     withGradle{
                         sh './gradlew iT'
                     }  
