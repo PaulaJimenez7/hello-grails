@@ -22,7 +22,7 @@ pipeline {
         stage('test-iT') {
             steps {
                 withGradle{
-                    sh './gradlew -Dgeb.env=firefoxHeadless iT'
+                    sh './gradlew iT'
                 }              
             }
             post{
