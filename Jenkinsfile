@@ -31,18 +31,6 @@ pipeline {
                 }
             }
         }
-        stage('test-iT') {
-            steps {
-                withGradle{
-                    sh './gradlew clean -Dgeb.env=firefoxHeadless iT'
-                }              
-            }
-            post{
-                always{
-                    junit 'build/test-results/integrationTest/TEST-*.xml'
-                }
-            }
-        }
         stage('codenarc') {
             steps {
                 withGradle{
