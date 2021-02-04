@@ -21,8 +21,10 @@ pipeline {
         }
         stage('test-iT') {
             steps { 
-                configFileProvider([configFile('hello-grails-gradle.properties'))]) {
+                configFileProvider([configFile('hello-grails-gradle.properties')]) {
+                    withGradle{
                         sh './gradlew iT'
+                    } 
                 }              
             }
             post{
