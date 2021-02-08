@@ -52,7 +52,7 @@ pipeline {
                 }
             }                
         }*/
-        stage('check'){
+        /*stage('check'){
             steps{
                 withGradle{
                     sh './gradlew check'
@@ -67,7 +67,7 @@ pipeline {
 
                 }
             }
-        }
+        }*/
 
 	    stage('sonarQube') {
             steps { 
