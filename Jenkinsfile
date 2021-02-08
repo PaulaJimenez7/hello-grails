@@ -52,15 +52,33 @@ pipeline {
                 }
             }                
         }*/
-	stage('sonarQube') {
+        stage('pmdtest'){
+            steps{
+                withGradle{
+                    sh './gradlew check'
+                }
+            }
+            post{
+                always{
+                    recordIssues(
+                        enabledForFailure: true, 
+                        tool: checkStyle(pattern: 'build/reports/checkstyle/*.xml')
+                    )
+
+                }
+            }
+        }
+
+	    stage('sonarQube') {
             steps { 
-                configFileProvider([configFile(fileId: 'hello-spring-testing-gradle.properties', targetLocation: 'gradle.properties')]) {
+                configFileProvider([configFile(fileId: 'hello-grails-gradleProperties', targetLocation: 'gradle.properties')]) {
                     withGradle{
                         withSonarQubeEnv(credentialsId:'9a7e16ef-5513-440a-b2f1-09233ae2e79e', installationName: 'local') { 
                             sh './gradlew sonarqube'
                         }
-                    }
-                }              
+
+                    }   
+                } 
             }
         }
 
