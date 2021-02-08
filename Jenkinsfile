@@ -54,12 +54,14 @@ pipeline {
         }*/
 	    stage('sonarQube') {
             steps { 
-                withGradle{
-                    withSonarQubeEnv(credentialsId:'9a7e16ef-5513-440a-b2f1-09233ae2e79e', installationName: 'local') { 
-                        sh './gradlew sonarqube'
-                    }
+                configFileProvider([configFile(fileId: 'hello-grails-gradleProperties', targetLocation: 'gradle.properties')]) {
+                    withGradle{
+                        withSonarQubeEnv(credentialsId:'9a7e16ef-5513-440a-b2f1-09233ae2e79e', installationName: 'local') { 
+                            sh './gradlew sonarqube'
+                        }
 
-                }    
+                    }   
+                } 
             }
         }
 
