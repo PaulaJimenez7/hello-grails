@@ -20,9 +20,11 @@ pipeline {
             }
         }
         stage('test-iT') {
-            steps {
-                withGradle{
-                    sh './gradlew -Dgeb.env=firefoxHeadless iT'
+            steps { 
+                configFileProvider([configFile(fileId:'hello-grails-gradle.properties', targetLocation: 'gradle.properties')]) {
+                    withGradle{
+                        sh './gradlew iT'
+                    }
                 }              
             }
             post{
