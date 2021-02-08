@@ -58,7 +58,7 @@ pipeline {
                     sh './gradlew check'
                 }
             }
-            post{
+            /*post{
                 always{
                     recordIssues(
                         enabledForFailure: true, 
@@ -66,7 +66,7 @@ pipeline {
                     )
 
                 }
-            }
+            }*/
         }
 
 	    stage('sonarQube') {
