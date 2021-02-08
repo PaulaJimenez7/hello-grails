@@ -52,13 +52,13 @@ pipeline {
                 }
             }                
         }*/
-        stage('pmdtest'){
+        stage('check'){
             steps{
                 withGradle{
                     sh './gradlew check'
                 }
             }
-            /*post{
+            post{
                 always{
                     recordIssues(
                         enabledForFailure: true, 
@@ -66,7 +66,7 @@ pipeline {
                     )
 
                 }
-            }*/
+            }
         }
 
 	    stage('sonarQube') {
