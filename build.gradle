@@ -20,6 +20,8 @@ apply plugin:"org.grails.grails-web"
 apply plugin:"com.github.erdi.webdriver-binaries"
 apply plugin:"com.bertramlabs.asset-pipeline"
 apply plugin:"org.grails.grails-gsp"
+apply plugin:"org.sonarqube" version "3.1.1"
+
 
 repositories {
     maven { url "https://repo.grails.org/grails/core" }
