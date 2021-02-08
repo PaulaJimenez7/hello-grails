@@ -27,11 +27,7 @@ apply plugin:"com.github.erdi.webdriver-binaries"
 apply plugin:"com.bertramlabs.asset-pipeline"
 apply plugin:"org.grails.grails-gsp"
 apply plugin:"org.sonarqube"
-<<<<<<< HEAD
 apply plugin:"checkstyle"
-=======
-apply plugin: 'checkstyle'
->>>>>>> 19defce81a124e5e5431a5016f02a0f27c02f05b
 
 
 repositories {
@@ -137,8 +133,5 @@ codenarcIntegrationTest.group 'static analysis'
 
 checkstyle {
     ignoreFailures = true
-<<<<<<< HEAD
-  }
-=======
 }
->>>>>>> 19defce81a124e5e5431a5016f02a0f27c02f05b
+
