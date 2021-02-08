@@ -52,6 +52,23 @@ pipeline {
                 }
             }                
         }*/
+        stage('pmdtest'){
+            steps{
+                withGradle{
+                    sh './gradlew check'
+                }
+            }
+            post{
+                always{
+                    recordIssues(
+                        enabledForFailure: true, 
+                        tool: checkStyle(pattern: 'build/reports/checkstyle/*.xml')
+                    )
+
+                }
+            }
+        }
+
 	    stage('sonarQube') {
             steps { 
                 configFileProvider([configFile(fileId: 'hello-grails-gradleProperties', targetLocation: 'gradle.properties')]) {
