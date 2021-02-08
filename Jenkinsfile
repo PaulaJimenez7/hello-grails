@@ -7,7 +7,7 @@ pipeline {
     }
 
     stages {
-        stage('test') {
+        /*stage('test') {
             steps {
                 withGradle{
                     sh './gradlew clean test'
@@ -51,7 +51,7 @@ pipeline {
 
                 }
             }                
-        }
+        }*/
 	stage('sonarQube') {
             steps { 
                 configFileProvider([configFile(fileId: 'hello-spring-testing-gradle.properties', targetLocation: 'gradle.properties')]) {
